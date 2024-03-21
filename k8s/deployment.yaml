@@ -1,0 +1,61 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ms-usesr-autoscaler
+spec:
+  scaleTargetRef:
+    kind: Deployment
+    apiVersion: apps/v1
+    name: ms-user
+  minReplicas: 1
+  maxReplicas: 3
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 60
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-user
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms-user
+  template:
+    metadata:
+      labels:
+        app: ms-user
+    spec:
+      containers:
+      - name: ms-user
+        image: anaccampos/ms-user:latest
+        ports:
+          - containerPort: 4001
+        resources:
+          limits:
+            cpu: 200m
+            memory: 500Mi
+          requests:
+            cpu: 100m
+            memory: 400Mi
+        livenessProbe:
+          httpGet:
+            path: /api/ms-user/health-check
+            port: 4001
+          initialDelaySeconds: 300
+          periodSeconds: 60
+          timeoutSeconds: 20
+          failureThreshold: 3
+        envFrom:
+        - configMapRef:
+            name: ms-user-configmap
+        - secretRef:
+            name: ms-user-secret
+      imagePullSecrets: Never
+      restartPolicy: Always

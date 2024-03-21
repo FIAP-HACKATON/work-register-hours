@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  labels:
+    app: postgres
+data:
+  POSTGRES_DB: "msuser"
+  POSTGRES_USER: "postgress"
+  POSTGRES_PASSWORD: "tech-challenge-5"
+  DATABASE_URL: "rds-user.cxmdxuni8gnk.us-east-1.rds.amazonaws.com"
