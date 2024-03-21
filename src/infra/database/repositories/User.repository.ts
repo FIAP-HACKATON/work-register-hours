@@ -9,14 +9,15 @@ import { GetUserByCPFRepository } from '../../../application/interfaces/reposito
 
 export class UserRepository implements CreateUserRepository, GetUserRepository, GetUserByIdRepository, GetUserByFiltersRepository, UpdateUserRepository, DeleteUserRepository, GetUserByCPFRepository {
   async getUserByCPF(cpf: GetUserByCPFRepository.Request): Promise<any> {
-    const data = await prisma.user.findUnique({
-      where: {
-        cpf
-      },
-    });
-    return data;
+    // const data = await prisma.user.findUnique({
+    //   where: {
+    //     cpf
+    //   },
+    // });
+    return {};
   }
   async createUser(userData: any): Promise<void> {
+    console.log(userData)
     try {
       await prisma.user.create({
         data: userData,
@@ -35,10 +36,7 @@ export class UserRepository implements CreateUserRepository, GetUserRepository, 
         },
         data: {
           name: preload.name,
-          email: preload.email,
-          phone: preload.phone,
-          cpf: preload.cpf,
-          profile: preload.profile as any,
+          email: preload.email
         },
       });
       return 'User updated successfully';
@@ -58,8 +56,7 @@ export class UserRepository implements CreateUserRepository, GetUserRepository, 
     const { email, cpf } = queryString;
     const data = await prisma.user.findUnique({
       where: {
-        email: email || undefined,
-        cpf: cpf || undefined,
+        email: email || undefined
       },
     });
     return data;

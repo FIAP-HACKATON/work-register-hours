@@ -26,7 +26,7 @@ export class DeleteUserLGPDController extends BaseController {
     if (user instanceof UserNotFoundError) {
       return notFound(user);
     }
-    if(email === user.email && phone === user.phone && name === user.name){
+    if(email === user.email && name === user.name){
       await this.deleteUser.execute(Number(user.id));
       return noContent();
     }

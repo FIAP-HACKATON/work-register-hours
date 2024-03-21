@@ -13,8 +13,8 @@ export class CreateUserController extends BaseController {
   }
 
   async execute(httpRequest: CreateUserController.Request): Promise<CreateUserController.Response> {
-    const { name, email, phone, cpf, profile } = httpRequest.body;
-    await this.createUser.execute({ name, email, phone, cpf, profile });
+    const { name, email, password, parentId, matricula } = httpRequest.body;
+    await this.createUser.execute({ name, email, password, parentId, matricula });
     return {
       statusCode: 201,
     };
