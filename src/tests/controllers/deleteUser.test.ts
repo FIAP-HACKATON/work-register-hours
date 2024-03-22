@@ -18,14 +18,22 @@ describe('Delete user', () => {
 
   describe('Delete user', () => {
     test('should return 201 when deleted user successfully', async () => {
-      jest.spyOn(UserRepository.prototype, 'getUserById').mockResolvedValue(user);
+      jest
+        .spyOn(UserRepository.prototype, 'getUserById')
+        .mockResolvedValue(user);
       jest.spyOn(UserRepository.prototype, 'deleteUser').mockResolvedValue();
-      const response = await request(server).delete(`/api/user/${userId}`).send(user);
+      const response = await request(server)
+        .delete(`/api/user/${userId}`)
+        .send(user);
       expect(response.status).toBe(204);
     });
     test('should return 400 when deleted user not found', async () => {
-      jest.spyOn(UserRepository.prototype, 'getUserById').mockResolvedValue(null);
-      const response = await request(server).delete(`/api/user/${userId}`).send(user);
+      jest
+        .spyOn(UserRepository.prototype, 'getUserById')
+        .mockResolvedValue(null);
+      const response = await request(server)
+        .delete(`/api/user/${userId}`)
+        .send(user);
       expect(response.status).toBe(404);
     });
   });

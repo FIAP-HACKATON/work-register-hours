@@ -12,7 +12,11 @@ describe('EnumFieldValidation', () => {
     const fieldName = 'exampleField';
     const enumValidator = new MockEnumValidator();
     const typeEnum = { VALUE1: 'value1', VALUE2: 'value2' };
-    const validation = new EnumFieldValidation(fieldName, enumValidator, typeEnum);
+    const validation = new EnumFieldValidation(
+      fieldName,
+      enumValidator,
+      typeEnum,
+    );
 
     const input = {
       [fieldName]: 'value1',
@@ -27,7 +31,11 @@ describe('EnumFieldValidation', () => {
     const fieldName = 'exampleField';
     const enumValidator = new MockEnumValidator();
     const typeEnum = { VALUE1: 'value1', VALUE2: 'value2' };
-    const validation = new EnumFieldValidation(fieldName, enumValidator, typeEnum);
+    const validation = new EnumFieldValidation(
+      fieldName,
+      enumValidator,
+      typeEnum,
+    );
 
     const input = {
       [fieldName]: 'invalidValue',

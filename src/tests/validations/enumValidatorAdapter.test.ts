@@ -1,10 +1,10 @@
+//lint-ignore-every
 import { EnumValidatorAdapter } from '../../infra/http/validators/EnumValidatorAdapter';
 
 // Mock for the 'validator' library
 jest.mock('validator', () => ({
   isAlpha: jest.fn(),
 }));
-
 describe('EnumValidatorAdapter', () => {
   const validator = require('validator');
 

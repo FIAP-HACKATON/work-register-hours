@@ -16,9 +16,11 @@ export class UpdateUserController extends BaseController {
     super();
   }
 
-  async execute(httpRequest: UpdateUserController.Request): Promise<UpdateUserController.Response> {
+  async execute(
+    httpRequest: UpdateUserController.Request,
+  ): Promise<UpdateUserController.Response> {
     const { id } = httpRequest.params!;
-    const { name, email, password, matricula, parentId } = httpRequest.body;
+    const { name, email, password, registration, parentId } = httpRequest.body;
 
     const userOrError = await this.getUserById.execute(+id);
     if (userOrError instanceof UserNotFoundError) {
@@ -31,7 +33,7 @@ export class UpdateUserController extends BaseController {
         name,
         email,
         password,
-        matricula,
+        registration,
         parentId,
       },
     });
@@ -43,6 +45,11 @@ export class UpdateUserController extends BaseController {
 }
 
 export namespace UpdateUserController {
-  export type Request = HttpRequest<UpdateUserInterface.UserDataType, { id: number }>;
-  export type Response = HttpResponse<UpdateUserInterface.Response | UserNotFoundError>;
+  export type Request = HttpRequest<
+    UpdateUserInterface.UserDataType,
+    { id: number }
+  >;
+  export type Response = HttpResponse<
+    UpdateUserInterface.Response | UserNotFoundError
+  >;
 }

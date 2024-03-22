@@ -8,5 +8,9 @@ export const makeUpdateUserController = (): BaseController => {
   const validation = makeUpdateUserValidation();
   const getUserByIdUseCase = makeGetUserById();
   const updateUserUseCase = makeUpdateUser();
-  return new UpdateUserController(validation, getUserByIdUseCase, updateUserUseCase);
+  return new UpdateUserController(
+    validation,
+    getUserByIdUseCase,
+    updateUserUseCase,
+  );
 };

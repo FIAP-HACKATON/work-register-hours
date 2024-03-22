@@ -5,5 +5,8 @@ export interface CreateRegisterRepository {
 }
 
 export namespace CreateUserRepository {
-  export type Request = Omit<Partial<TimeRegisterEntity>, 'id' | 'created_at' | 'updated_at'>;
+  export type Request = Omit<
+    Partial<TimeRegisterEntity>,
+    'id' | 'created_at' | 'updated_at'
+  >;
 }

@@ -8,7 +8,9 @@ export class CreateRegisterController extends BaseController {
     super();
   }
 
-  async execute(httpRequest: CreateRegisterController.Request): Promise<CreateRegisterController.Response> {
+  async execute(
+    httpRequest: CreateRegisterController.Request,
+  ): Promise<CreateRegisterController.Response> {
     const { user_id } = httpRequest.body;
     await this.createRegister.execute({ user_id });
     return {

@@ -14,7 +14,9 @@ export class DeleteUserController extends BaseController {
     super();
   }
 
-  async execute(httpRequest: DeleteUserController.Request): Promise<DeleteUserController.Response> {
+  async execute(
+    httpRequest: DeleteUserController.Request,
+  ): Promise<DeleteUserController.Response> {
     const { id } = httpRequest.params!;
     const userOrError = await this.getUserById.execute(id);
     if (userOrError instanceof UserNotFoundError) {

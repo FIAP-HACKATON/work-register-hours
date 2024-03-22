@@ -56,8 +56,12 @@ describe('UserRepository', () => {
     });
 
     test('should throw an error if user update fails', async () => {
-      (prisma.user.update as jest.Mock).mockRejectedValueOnce(new Error('Database error'));
-      await expect(userRepository.updateUser(params)).rejects.toThrow('Database error');
+      (prisma.user.update as jest.Mock).mockRejectedValueOnce(
+        new Error('Database error'),
+      );
+      await expect(userRepository.updateUser(params)).rejects.toThrow(
+        'Database error',
+      );
     });
   });
 
@@ -101,8 +105,12 @@ describe('UserRepository', () => {
 
     test('should throw an error if user retrieval by ID fails', async () => {
       const userId = 1;
-      (prisma.user.findUnique as jest.Mock).mockRejectedValueOnce(new Error('Database error'));
-      await expect(userRepository.getUserById(userId)).rejects.toThrow('Database error');
+      (prisma.user.findUnique as jest.Mock).mockRejectedValueOnce(
+        new Error('Database error'),
+      );
+      await expect(userRepository.getUserById(userId)).rejects.toThrow(
+        'Database error',
+      );
     });
   });
 

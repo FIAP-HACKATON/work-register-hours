@@ -9,7 +9,9 @@ export class CreateRegister implements CreateRegisterInterface {
     private readonly findUserById?: GetUserByIdRepository,
   ) {}
 
-  async execute(UserData: CreateRegisterInterface.Request): Promise<CreateRegisterInterface.Response> {
+  async execute(
+    UserData: CreateRegisterInterface.Request,
+  ): Promise<CreateRegisterInterface.Response> {
     try {
       const user = await this.findUserById.getUserById(UserData.user_id);
 

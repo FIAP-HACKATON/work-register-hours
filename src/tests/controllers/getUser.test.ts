@@ -31,12 +31,16 @@ describe('Get user', () => {
   });
 
   test('should return 200 on successfully getting the users by filters', async () => {
-    jest.spyOn(UserRepository.prototype, 'getUserByFilters').mockResolvedValue(user);
+    jest
+      .spyOn(UserRepository.prototype, 'getUserByFilters')
+      .mockResolvedValue(user);
     const response = await request(server).get(`/api/user/filters`);
     expect(response.status).toBe(200);
   });
   test('should return 404 for users not found by filters', async () => {
-    jest.spyOn(UserRepository.prototype, 'getUserByFilters').mockResolvedValue(null);
+    jest
+      .spyOn(UserRepository.prototype, 'getUserByFilters')
+      .mockResolvedValue(null);
     const response = await request(server).get(`/api/user/filters`);
     expect(response.status).toBe(404);
     expect(response.body.error).toBe('The User was not found');

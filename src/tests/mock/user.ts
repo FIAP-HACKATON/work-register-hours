@@ -1,5 +1,4 @@
 import { UserEntity } from '../../domain/entities/User';
-import { ProfileEnum } from '../../domain/enum/UserEnum';
 
 export const user: UserEntity = {
   id: 1,
@@ -8,7 +7,7 @@ export const user: UserEntity = {
   created_at: undefined,
   updated_at: undefined,
   password: '',
-  matricula: '',
+  registration: '1',
   parentId: 0,
 };
 
@@ -50,7 +49,7 @@ export const userEmailError: UserEntity = {
   created_at: undefined,
   updated_at: undefined,
   password: '',
-  matricula: '',
+  registration: '1',
   parentId: 0,
 };
 
@@ -58,7 +57,7 @@ export const userCPFError: UserEntity = {
   id: 1,
   name: 'Joao Maria',
   email: 'joao.maria@gmail.com',
-  matricula: 'AAA',
+  registration: '1',
   created_at: undefined,
   updated_at: undefined,
   password: '',
