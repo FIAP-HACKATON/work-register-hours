@@ -8,8 +8,7 @@ export const makeGetUserAccessValidation = (): ValidationComposite => {
 
   return new ValidationComposite(
     [
-      new EmailValidation('email', emailValidator),
-      new RequiredFieldValidation('password'),
+      new RequiredFieldValidation('password')
     ],
     'body',
   );

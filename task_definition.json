@@ -1,5 +1,6 @@
 {
     "family": "ecs-fargate-user-td",
+    "executionRoleArn": "arn:aws:iam::${{ secrets.ACCOUNT_ID }}:role/ecsTaskExecutionRole",
     "containerDefinitions": [
         {
             "portMappings": [

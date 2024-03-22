@@ -22,8 +22,7 @@ export class UserRepository
     const { name, registration, password } = queryString;
     const user = await prisma.user.findFirst({
       where: {
-        OR: [{ name: name }, { registration: registration }],
-        AND: [{ password: password }],
+        OR: [{ name: name }, { registration: registration }]
       },
     });
     return user;
@@ -31,9 +30,7 @@ export class UserRepository
 
   async createUser(userData: any): Promise<void> {
     const hash = await bcrypt.hash(userData.password, 10);
-    userData.password = hash;
-    console.log(userData);
-
+    userData.password = hash
     try {
       await prisma.user.create({
         data: userData,
