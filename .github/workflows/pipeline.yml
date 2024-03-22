@@ -74,15 +74,15 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
     
-    - name: Save task definition
-      run: echo "::set-output name=task-definition::task_definition.json"
+    # - name: Save task definition
+    #   run: echo "::set-output name=task-definition::task_definition.json"
 
-  cd_main:
-    name: CD - Main
-    if: ${{ success() && github.event_name != 'pull_request' }}
-    needs: [ci_docker]
-    runs-on: 'ubuntu-latest'
-    steps:
+  # cd_main:
+  #   name: CD - Main
+  #   if: ${{ success() && github.event_name != 'pull_request' }}
+  #   needs: [ci_docker]
+  #   runs-on: 'ubuntu-latest'
+  #   steps:
     - name: List files in directory
       run: ls -la
     - name: Fill in the new image ID in the Amazon ECS task definition
@@ -91,14 +91,14 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: ms-user
         IMAGE_TAG: latest
-      uses: aws-actions/amazon-ecs-render-task-definition@c804dfbdd57f713b6c079302a4c01db7017a36fc
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: ${{ needs.ci_docker.outputs.task-definition }}
+        task-definition: task-definition.json
         container-name: ${{ env.CONTAINER_NAME }}
         image: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
 
     - name: Deploy Amazon ECS task definition
-      uses: aws-actions/amazon-ecs-deploy-task-definition@df9643053eda01f169e64a0e60233aacca83799a
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
         service: ${{ secrets.ECS_SERVICE }}
