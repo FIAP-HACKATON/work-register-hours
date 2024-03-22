@@ -1,4 +1,4 @@
-import { CreateRegisterInterface } from '@application/interfaces/use-cases/time-register/CreateRegisterInterface';
+import { CreateRegisterInterface } from '@application/interfaces/use-cases/time-register/CreateRegister.interface';
 import { CreateRegisterRepository } from '@application/interfaces/repositories/time-register/CreateRegisterRepostirory';
 import { GetUserByIdRepository } from '@application/interfaces/repositories/user/GetUserByIdRepository';
 import moment from 'moment-timezone';

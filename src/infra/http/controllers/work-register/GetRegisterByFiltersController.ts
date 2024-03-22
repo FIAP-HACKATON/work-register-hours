@@ -2,7 +2,7 @@ import { BaseController } from '../BaseController';
 import { HttpRequest } from '../../interfaces/HttpRequest';
 import { HttpResponse } from '../../interfaces/HttpResponse';
 import { ok } from '../../helpers/http';
-import { GetRegisterByFilterInterface } from '../../../../application/interfaces/use-cases/time-register/GetRegisterByFilter';
+import { GetRegisterByFilterInterface } from '../../../../application/interfaces/use-cases/time-register/GetRegisterByFilter.interface.';
 
 export class GetRegisterByFiltersController extends BaseController {
   constructor(
