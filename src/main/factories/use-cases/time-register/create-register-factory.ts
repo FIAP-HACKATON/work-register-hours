@@ -1,6 +1,6 @@
 import { UserRepository } from './../../../../infra/database/repositories/User.repository';
 import { TimeRegisterRepository } from '../../../../infra/database/repositories/TimeRegister.repository';
-import { CreateRegisterInterface } from '../../../../application/interfaces/use-cases/time-register/CreateRegisterInterface';
+import { CreateRegisterInterface } from '../../../../application/interfaces/use-cases/time-register/CreateRegister.interface';
 import { CreateRegister } from '../../../../application/use-cases/time-register/CreateRegister';
 
 export const makeCreateRegister = (): CreateRegisterInterface => {

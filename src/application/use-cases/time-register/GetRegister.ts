@@ -1,4 +1,4 @@
-import { GetRegisterByFilterInterface } from '@application/interfaces/use-cases/time-register/GetRegisterByFilter';
+import { GetRegisterByFilterInterface } from '@application/interfaces/use-cases/time-register/GetRegisterByFilter.interface.';
 import { PointRegisterPresenter } from '../../../application/presenter/time-register.presenter';
 import { GetRegisterRepository } from '@application/interfaces/repositories/time-register/GetRegisterRepository';
 
