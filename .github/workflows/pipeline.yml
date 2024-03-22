@@ -80,6 +80,8 @@ jobs:
     needs: [ci_docker]
     runs-on: 'ubuntu-latest'
     steps:
+    - name: List files in directory
+      run: ls -la
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
       env:
@@ -91,9 +93,6 @@ jobs:
         task-definition: 'task_definition.json'
         container-name: ${{ env.CONTAINER_NAME }}
         image: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
-
-    - name: List files in directory
-      run: ls -la
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@df9643053eda01f169e64a0e60233aacca83799a
