@@ -1,34 +1,29 @@
-import { CreateRegisterRepository } from '@application/interfaces/repositories/time-register/CreateRegisterRepostirory';
 import { GetRegisterByFilterInterface } from '@application/interfaces/use-cases/time-register/GetRegisterByFilter';
-import { PointRegisterPresenter } from '@application/presenter/time-register.presenter';
+import { PointRegisterPresenter } from '../../../application/presenter/time-register.presenter';
+import { GetRegisterRepository } from '@application/interfaces/repositories/time-register/GetRegisterRepository';
 
 export class GetRegisterByFilters implements GetRegisterByFilterInterface {
   constructor(
-    private readonly getUserByFiltersRepository: CreateRegisterRepository,
+    private readonly getUserByFiltersRepository: GetRegisterRepository,
   ) {}
 
   async execute(
     filter: GetRegisterByFilterInterface.Request,
   ): Promise<GetRegisterByFilterInterface.Response> {
-    const { initial_date, final_date } = filter;
-    const registration = await this.getUserByFiltersRepository.execute({
-      initial_date,
-      final_date,
-    });
+    try {
+      const { filter_date } = filter;
+      const registration =
+        await this.getUserByFiltersRepository.getRegistration({
+          filter_date,
+        });
 
-    if (!registration) {
+      if (!registration) {
+        return [];
+      }
+      return PointRegisterPresenter.register(registration);
+    } catch (error) {
+      console.log(error);
       return [];
     }
-
-    const totalHoursWorked = registration.intervals.reduce((acc, interval) => {
-      const start = new Date(interval.start);
-      const close = new Date(interval.close);
-      const diff = close.getTime() - start.getTime();
-      return acc + diff;
-    }, 0);
-
-    registration.totalHoursWorked = totalHoursWorked / 1000 / 60 / 60;
-
-    return PointRegisterPresenter.register(registration);
   }
 }
