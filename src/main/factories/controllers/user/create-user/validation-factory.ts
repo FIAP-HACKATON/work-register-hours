@@ -22,7 +22,6 @@ export const makeCreateUserValidation = (): ValidationComposite => {
       new RequiredFieldValidation('email'),
       new EmailValidation('email', emailValidator),
       new RequiredFieldValidation('matricula'),
-      new RequiredFieldValidation('parentId'),
       new RequiredFieldValidation('password')
     ],
     'body',

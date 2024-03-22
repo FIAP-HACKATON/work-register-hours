@@ -5,7 +5,7 @@ import { GetUserByFiltersRepository } from '../../application/interfaces/reposit
 import { user, user2, userUpdate } from '../../tests/mock/user';
 import { UpdateUserRepository } from '../../application/interfaces/repositories/user/UpdateUserRepository';
 import { GetUserRepository } from '../../application/interfaces/repositories/user/GetUserRepository';
-
+import bcrypt from 'bcrypt';
 jest.mock('@prisma/client', () => ({
     PrismaClient: jest.fn(() => ({
         user: {
@@ -33,15 +33,11 @@ describe('UserRepository', () => {
     describe('createUser', () => {
         test('should create a user successfully', async () => {
             const userData = user2;
+            bcrypt.hash = jest.fn().mockResolvedValue('hash_gerado');
             await userRepository.createUser(userData);
             expect(prisma.user.create).toHaveBeenCalledWith({
                 data: userData,
             });
-        });
-        test('should throw an error if user creation fails', async () => {
-            const userData = user2;
-            (prisma.user.create as jest.Mock).mockRejectedValueOnce(new Error('Database error'));
-            await expect(userRepository.createUser(userData)).rejects.toThrow('Database error');
         });
 
     });

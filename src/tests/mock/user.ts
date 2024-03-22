@@ -40,10 +40,7 @@ export const user2 = {
 
 export const userUpdate = {
   name: 'Joao Maria',
-  email: 'joao.maria@gmail.com',
-  phone: '89973391472',
-  cpf: '35524867474',
-  profile: 'ADMIN',
+  email: 'joao.maria@gmail.com'
 };
 
 export const userEmailError: UserEntity = {
