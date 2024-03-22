@@ -15,5 +15,13 @@ export const makeUpdateUserValidation = (): ValidationComposite => {
   const numberValidator = new NumberValidatorAdapter();
   const enumValidator = new EnumValidatorAdapter();
 
-  return new ValidationComposite([new EmailValidation('email', emailValidator), new CpfValidation('cpf', cpfValidator), new EnumFieldValidation('profile', enumValidator, ProfileEnum), new NumberFieldValidation('phone', numberValidator)], 'body');
+  return new ValidationComposite(
+    [
+      new EmailValidation('email', emailValidator),
+      new CpfValidation('cpf', cpfValidator),
+      new EnumFieldValidation('profile', enumValidator, ProfileEnum),
+      new NumberFieldValidation('phone', numberValidator),
+    ],
+    'body',
+  );
 };

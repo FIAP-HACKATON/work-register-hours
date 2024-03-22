@@ -4,7 +4,9 @@ import { DeleteUserInterface } from '@application/interfaces/use-cases/user/Dele
 export class DeleteUser implements DeleteUserInterface {
   constructor(private readonly deleteUserRepository: DeleteUserRepository) {}
 
-  async execute(userId: DeleteUserInterface.Request): Promise<DeleteUserInterface.Response> {
+  async execute(
+    userId: DeleteUserInterface.Request,
+  ): Promise<DeleteUserInterface.Response> {
     await this.deleteUserRepository.deleteUser(userId);
   }
 }

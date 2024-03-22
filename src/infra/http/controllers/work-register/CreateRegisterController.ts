@@ -4,13 +4,13 @@ import { HttpRequest } from '../../interfaces/HttpRequest';
 import { HttpResponse } from '../../interfaces/HttpResponse';
 
 export class CreateRegisterController extends BaseController {
-  constructor(
-    private readonly createRegister: CreateRegisterInterface,
-  ) {
+  constructor(private readonly createRegister: CreateRegisterInterface) {
     super();
   }
 
-  async execute(httpRequest: CreateRegisterController.Request): Promise<CreateRegisterController.Response> {
+  async execute(
+    httpRequest: CreateRegisterController.Request,
+  ): Promise<CreateRegisterController.Response> {
     const { user_id } = httpRequest.body;
     await this.createRegister.execute({ user_id });
     return {

@@ -22,9 +22,12 @@ Then('the response status should be {int}', (expectedStatus: number) => {
   assert.equal(response.status, expectedStatus);
 });
 
-Then('the response should contain the text {string}', (expectedText: string) => {
-  assert.equal(response.data, expectedText);
-});
+Then(
+  'the response should contain the text {string}',
+  (expectedText: string) => {
+    assert.equal(response.data, expectedText);
+  },
+);
 
 Then('the server stop', () => {
   server.close();

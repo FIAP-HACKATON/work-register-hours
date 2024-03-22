@@ -3,12 +3,20 @@ import { GetUserAccessInterface } from '../../../application/interfaces/use-case
 import { GetUserAccessRepository } from '../../../application/interfaces/repositories/user/GetUserAccess';
 
 export class GetUserAccess implements GetUserAccessInterface {
-  constructor(private readonly getUserAccessRepository: GetUserAccessRepository) {}
+  constructor(
+    private readonly getUserAccessRepository: GetUserAccessRepository,
+  ) {}
 
-  async execute(queryString: GetUserAccessInterface.Request): Promise<GetUserAccessInterface.Response> {
-    const { email, password } = queryString;
+  async execute(
+    queryString: GetUserAccessInterface.Request,
+  ): Promise<GetUserAccessInterface.Response> {
+    const { name, registration, password } = queryString;
 
-    const user = await this.getUserAccessRepository.getUserAccess({ email, password });
+    const user = await this.getUserAccessRepository.getUserAccess({
+      name,
+      registration,
+      password,
+    });
 
     if (!user) {
       return new UserNotFoundError();

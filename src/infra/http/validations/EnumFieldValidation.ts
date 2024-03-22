@@ -11,7 +11,10 @@ export class EnumFieldValidation implements Validation {
 
   validate(input: any): Error | null {
     if (input[this.fieldName]) {
-      const isValid = this.enumValidator.isValid(input[this.fieldName], this.typeEnum);
+      const isValid = this.enumValidator.isValid(
+        input[this.fieldName],
+        this.typeEnum,
+      );
       if (!isValid) {
         return new InvalidParamError(this.fieldName);
       }

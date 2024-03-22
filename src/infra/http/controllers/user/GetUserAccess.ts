@@ -1,9 +1,8 @@
 import { BaseController } from '../BaseController';
 import { HttpRequest } from '../../interfaces/HttpRequest';
 import { HttpResponse } from '../../interfaces/HttpResponse';
-import { badRequest, notFound, ok } from '../../helpers/http';
+import { badRequest, notFound } from '../../helpers/http';
 import { UserNotFoundError } from '../../../../application/errors/user/UserNotFoundError';
-import { GetUserByFiltersInterface } from '../../../../application/interfaces/use-cases/user/GetUserByFiltersInterface';
 import { Validation } from '../../interfaces/Validation';
 import { GetUserAccessInterface } from '@application/interfaces/use-cases/user/GetUserAccessInterface';
 import bcrypt from 'bcrypt';
@@ -11,8 +10,8 @@ import jwt from 'jsonwebtoken';
 import { UserCredentialInvalidError } from '../../../../application/errors/user/UserCredentialInvalid';
 
 export class GetUserByAccessController extends BaseController {
-  private secretKey = process.env.JWT_SECRET
-  private expireJwt = process.env.EXPIRE_JWT
+  private secretKey = process.env.JWT_SECRET;
+  private expireJwt = process.env.EXPIRE_JWT;
   constructor(
     private readonly getUserAccessValidation: Validation,
     private readonly getUserAccess: GetUserAccessInterface,
@@ -20,17 +19,25 @@ export class GetUserByAccessController extends BaseController {
     super(getUserAccessValidation);
   }
 
-  async execute(httpRequest: GetUserAccessController.Request): Promise<GetUserAccessController.Response> {
-    const { email, password } = httpRequest.body!;
-    const user = await this.getUserAccess.execute({ email, password });
+  async execute(
+    httpRequest: GetUserAccessController.Request,
+  ): Promise<GetUserAccessController.Response> {
+    const { registration, name, password } = httpRequest.body!;
+    const user = await this.getUserAccess.execute({
+      registration,
+      name,
+      password,
+    });
     if (user instanceof UserNotFoundError) {
       return notFound(user);
     }
 
-    if(await bcrypt.compare(password, user.password)){
-      const payload = { id: user.id}
-      const token = jwt.sign(payload, this.secretKey, {expiresIn:this.expireJwt});
-      return {statusCode:200, body: {token}}
+    if (await bcrypt.compare(password, user.password)) {
+      const payload = { id: user.id };
+      const token = jwt.sign(payload, this.secretKey, {
+        expiresIn: this.expireJwt,
+      });
+      return { statusCode: 200, body: { token } };
     }
 
     return badRequest(new UserCredentialInvalidError());
@@ -38,6 +45,12 @@ export class GetUserByAccessController extends BaseController {
 }
 
 export namespace GetUserAccessController {
-  export type Request = HttpRequest<{ email: string, password: string }>;
-  export type Response = HttpResponse<void>  | HttpResponse<GetUserAccessInterface.Response>;
+  export type Request = HttpRequest<{
+    name?: string;
+    registration?: string;
+    password: string;
+  }>;
+  export type Response =
+    | HttpResponse<void>
+    | HttpResponse<GetUserAccessInterface.Response>;
 }

@@ -10,7 +10,9 @@ export class GetUserByIdController extends BaseController {
     super();
   }
 
-  async execute(httpRequest: GetUserByIdController.Request): Promise<GetUserByIdController.Response> {
+  async execute(
+    httpRequest: GetUserByIdController.Request,
+  ): Promise<GetUserByIdController.Response> {
     const { id } = httpRequest.params!;
     const userOrError = await this.getUserById.execute(id);
 

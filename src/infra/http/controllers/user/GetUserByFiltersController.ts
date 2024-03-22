@@ -14,7 +14,9 @@ export class GetUserByFiltersController extends BaseController {
     super(getUserByFiltersValidation);
   }
 
-  async execute(httpRequest: GetUserByFiltersController.Request): Promise<GetUserByFiltersController.Response> {
+  async execute(
+    httpRequest: GetUserByFiltersController.Request,
+  ): Promise<GetUserByFiltersController.Response> {
     const { email, cpf } = httpRequest.query!;
     const userOrError = await this.getUserByFilters.execute({ email, cpf });
     if (userOrError instanceof UserNotFoundError) {

@@ -8,5 +8,11 @@ export const makeGetUserByFiltersValidation = (): ValidationComposite => {
   const emailValidator = new EmailValidatorAdapter();
   const cpfValidator = new CPfValidatorAdapter();
 
-  return new ValidationComposite([new EmailValidation('email', emailValidator), new CpfValidation('cpf', cpfValidator)], 'query');
+  return new ValidationComposite(
+    [
+      new EmailValidation('email', emailValidator),
+      new CpfValidation('cpf', cpfValidator),
+    ],
+    'query',
+  );
 };
