@@ -14,8 +14,8 @@
             "essential": true
         }
     ],
-    "cpu": 256,
-    "memory": 1024,
+    "cpu": "256",
+    "memory": "1024",
     "networkMode": "awsvpc",
     "runtimePlatform": {
         "operatingSystemFamily": "LINUX"
