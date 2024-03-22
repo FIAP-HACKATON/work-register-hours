@@ -13,8 +13,7 @@ export interface GetRegisterByFilterInterface
 
 export namespace GetRegisterByFilterInterface {
   export type Request = {
-    initial_date: Date;
-    final_date?: Date;
+    filter_date: string;
   };
   export type Response = registerPoint | [];
 }
