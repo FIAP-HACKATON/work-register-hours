@@ -5,11 +5,11 @@ export const user: UserEntity = {
   id: 1,
   name: 'Joao Maria',
   email: 'joao.maria@gmail.com',
-  phone: '89973391472',
-  cpf: '35524867474',
-  profile: ProfileEnum.CUSTOMER,
   created_at: undefined,
   updated_at: undefined,
+  password: '',
+  matricula: '',
+  parentId: 0
 };
 
 export const userResquest = {
@@ -40,30 +40,27 @@ export const user2 = {
 
 export const userUpdate = {
   name: 'Joao Maria',
-  email: 'joao.maria@gmail.com',
-  phone: '89973391472',
-  cpf: '35524867474',
-  profile: 'ADMIN',
+  email: 'joao.maria@gmail.com'
 };
 
 export const userEmailError: UserEntity = {
   id: 1,
   name: 'Joao Maria',
   email: 'joao.maria',
-  phone: '89973391472',
-  cpf: '35524867474',
-  profile: ProfileEnum.CUSTOMER,
   created_at: undefined,
   updated_at: undefined,
+  password: '',
+  matricula: '',
+  parentId: 0
 };
 
 export const userCPFError: UserEntity = {
   id: 1,
   name: 'Joao Maria',
   email: 'joao.maria@gmail.com',
-  phone: '89973391472',
-  cpf: '000000000',
-  profile: ProfileEnum.CUSTOMER,
+  matricula: 'AAA',
   created_at: undefined,
   updated_at: undefined,
+  password: '',
+  parentId: 0
 };

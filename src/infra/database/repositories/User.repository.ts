@@ -5,18 +5,25 @@ import { GetUserByFiltersRepository } from '@application/interfaces/repositories
 import { UpdateUserRepository } from '../../../application/interfaces/repositories/user/UpdateUserRepository';
 import { DeleteUserRepository } from '../../../application/interfaces/repositories/user/DeleteUserRepository';
 import { prisma } from '../orm/prisma';
-import { GetUserByCPFRepository } from '../../../application/interfaces/repositories/user/GetUserByCPFRepository';
+import { GetUserAccessRepository } from '@application/interfaces/repositories/user/GetUserAccess';
+import bcrypt from 'bcrypt';
 
-export class UserRepository implements CreateUserRepository, GetUserRepository, GetUserByIdRepository, GetUserByFiltersRepository, UpdateUserRepository, DeleteUserRepository, GetUserByCPFRepository {
-  async getUserByCPF(cpf: GetUserByCPFRepository.Request): Promise<any> {
-    const data = await prisma.user.findUnique({
+export class UserRepository implements CreateUserRepository, GetUserRepository, GetUserByIdRepository, GetUserByFiltersRepository, UpdateUserRepository, DeleteUserRepository, GetUserAccessRepository {
+
+  
+  async getUserAccess(queryString: GetUserAccessRepository.Request) {
+    const {email} = queryString;
+    const user = await prisma.user.findUnique({
       where: {
-        cpf
+        email: email 
       },
     });
-    return data;
+    return user    
   }
+
   async createUser(userData: any): Promise<void> {
+    const hash = await bcrypt.hash(userData.password, 10);
+    userData.password = hash
     try {
       await prisma.user.create({
         data: userData,
@@ -35,10 +42,7 @@ export class UserRepository implements CreateUserRepository, GetUserRepository, 
         },
         data: {
           name: preload.name,
-          email: preload.email,
-          phone: preload.phone,
-          cpf: preload.cpf,
-          profile: preload.profile as any,
+          email: preload.email
         },
       });
       return 'User updated successfully';
@@ -58,8 +62,7 @@ export class UserRepository implements CreateUserRepository, GetUserRepository, 
     const { email, cpf } = queryString;
     const data = await prisma.user.findUnique({
       where: {
-        email: email || undefined,
-        cpf: cpf || undefined,
+        email: email || undefined
       },
     });
     return data;
