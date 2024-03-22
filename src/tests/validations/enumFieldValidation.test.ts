@@ -38,6 +38,4 @@ describe('EnumFieldValidation', () => {
     expect(result).toBeInstanceOf(InvalidParamError);
     expect(result!.message).toBe(`Invalid param: ${fieldName}`);
   });
-
-
 });

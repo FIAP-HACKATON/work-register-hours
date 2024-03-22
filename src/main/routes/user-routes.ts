@@ -16,5 +16,4 @@ export default (router: Router): void => {
   router.get('/user/:id', expressRouteAdapter(makeGetUserByIdController()));
   router.patch('/user/:id', expressRouteAdapter(makeUpdateUserController()));
   router.delete('/user/:id', expressRouteAdapter(makeDeleteUserController()));
-
 };

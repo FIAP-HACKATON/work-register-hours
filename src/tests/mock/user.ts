@@ -9,23 +9,23 @@ export const user: UserEntity = {
   updated_at: undefined,
   password: '',
   matricula: '',
-  parentId: 0
+  parentId: 0,
 };
 
 export const userResquest = {
-  cpf: "35524867474",
-  name: "Joao Maria",
-  address: "Rua",
-  phone: "89973391472",
-  email:"joao.maria@gmail.com"
-}
+  cpf: '35524867474',
+  name: 'Joao Maria',
+  address: 'Rua',
+  phone: '89973391472',
+  email: 'joao.maria@gmail.com',
+};
 export const userResquestInvalid = {
-  cpf: "35524867474",
-  name: "Joao Mariaa",
-  address: "Rua",
-  phone: "89973391472",
-  email:"joao.maria@gmail.com"
-}
+  cpf: '35524867474',
+  name: 'Joao Mariaa',
+  address: 'Rua',
+  phone: '89973391472',
+  email: 'joao.maria@gmail.com',
+};
 
 export const user2 = {
   id: 1,
@@ -40,7 +40,7 @@ export const user2 = {
 
 export const userUpdate = {
   name: 'Joao Maria',
-  email: 'joao.maria@gmail.com'
+  email: 'joao.maria@gmail.com',
 };
 
 export const userEmailError: UserEntity = {
@@ -51,7 +51,7 @@ export const userEmailError: UserEntity = {
   updated_at: undefined,
   password: '',
   matricula: '',
-  parentId: 0
+  parentId: 0,
 };
 
 export const userCPFError: UserEntity = {
@@ -62,5 +62,5 @@ export const userCPFError: UserEntity = {
   created_at: undefined,
   updated_at: undefined,
   password: '',
-  parentId: 0
+  parentId: 0,
 };

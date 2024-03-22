@@ -4,9 +4,7 @@ import { HttpRequest } from '../../interfaces/HttpRequest';
 import { HttpResponse } from '../../interfaces/HttpResponse';
 
 export class CreateRegisterController extends BaseController {
-  constructor(
-    private readonly createRegister: CreateRegisterInterface,
-  ) {
+  constructor(private readonly createRegister: CreateRegisterInterface) {
     super();
   }
 

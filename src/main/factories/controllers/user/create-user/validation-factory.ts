@@ -16,14 +16,5 @@ export const makeCreateUserValidation = (): ValidationComposite => {
   const numberValidator = new NumberValidatorAdapter();
   const enumValidator = new EnumValidatorAdapter();
 
-  return new ValidationComposite(
-    [
-      new RequiredFieldValidation('name'),
-      new RequiredFieldValidation('email'),
-      new EmailValidation('email', emailValidator),
-      new RequiredFieldValidation('matricula'),
-      new RequiredFieldValidation('password')
-    ],
-    'body',
-  );
+  return new ValidationComposite([new RequiredFieldValidation('name'), new RequiredFieldValidation('email'), new EmailValidation('email', emailValidator), new RequiredFieldValidation('matricula'), new RequiredFieldValidation('password')], 'body');
 };

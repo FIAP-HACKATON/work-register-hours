@@ -11,5 +11,5 @@ export namespace CreateRegisterInterface {
 }
 
 export type createObject = Omit<Partial<TimeRegisterEntity>, 'id' | 'created_at' | 'updated_at'> & {
-  user_id
-}
+  user_id;
+};

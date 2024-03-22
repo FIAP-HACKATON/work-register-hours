@@ -4,7 +4,7 @@ import { HttpRequest } from '../../infra/http/interfaces/HttpRequest';
 import jwt from 'jsonwebtoken';
 
 export const expressRouteAdapter = (controller: BaseController) => async (req: Request, res: Response) => {
-  const secretKey = process.env.JWT_SECRET
+  const secretKey = process.env.JWT_SECRET;
   const httpRequest: HttpRequest = {
     body: req.body,
     query: req.query,

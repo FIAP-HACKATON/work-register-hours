@@ -8,6 +8,6 @@ export interface GetUserAccessInterface extends UseCase<GetUserAccessInterface.R
 }
 
 export namespace GetUserAccessInterface {
-  export type Request = { email?: string; password?: string };
+  export type Request = { name: string; registration: string; password?: string };
   export type Response = UserEntity | UserNotFoundError | any | UserCredentialInvalidError;
 }

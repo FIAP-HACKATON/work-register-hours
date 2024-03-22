@@ -32,7 +32,7 @@ export class UpdateUserController extends BaseController {
         email,
         password,
         matricula,
-        parentId
+        parentId,
       },
     });
     if (updatedUserOrError instanceof UserNotFoundError) {

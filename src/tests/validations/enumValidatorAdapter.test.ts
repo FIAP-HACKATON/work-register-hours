@@ -14,7 +14,7 @@ describe('EnumValidatorAdapter', () => {
 
   test('should return false for an invalid enum value (non-alphabetic)', () => {
     const enumValidatorAdapter = new EnumValidatorAdapter();
-    const dataEnum = '123'; 
+    const dataEnum = '123';
     const typeEnum = { VALUE1: 'value1', VALUE2: 'value2' };
 
     // Mocking isAlpha to return false

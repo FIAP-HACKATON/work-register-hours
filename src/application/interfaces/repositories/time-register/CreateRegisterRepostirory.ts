@@ -1,7 +1,7 @@
 import { TimeRegisterEntity } from '@domain/entities/time-register';
 
 export interface CreateRegisterRepository {
-  execute(data: any ): Promise<any>;
+  execute(data: any): Promise<any>;
 }
 
 export namespace CreateUserRepository {
