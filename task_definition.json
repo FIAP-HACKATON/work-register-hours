@@ -4,8 +4,15 @@
         {
             "name": "ecs-fargate-user-container",
             "image": "${{ secrets.ECR_REGISTRY }}/${{ secrets.ECR_REPOSITORY }}:latest",
+            "requiresCompatibilities": [
+                "FARGATE"
+            ],
             "cpu": 256,
             "memory": 1024,
+            "networkMode": "awsvpc",
+            "runtimePlatform": {
+                "operatingSystemFamily": "LINUX"
+            },
             "essential": true
         }
     ]
