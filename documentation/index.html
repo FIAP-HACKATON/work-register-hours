@@ -1,0 +1,288 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>clean-arch documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="./" class="navbar-brand">clean-arch documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h1>USER MICROSERVICE</h1>
+<blockquote>
+<p>User microservice for snack bar order management system.</p>
+</blockquote>
+<h2>What I need?</h2>
+<p>With this structure, your environment will have everything you need to build a project:</p>
+<ul>
+<li>Node, docker and docker-compose</li>
+</ul>
+<h2>Running the application directly on your local machine</h2>
+<p>You can use these commands to start the application:</p>
+<ul>
+<li><code>docker build -t order . --no-cache</code></li>
+<li><code>docker-compose up -d --force-recreate</code></li>
+</ul>
+<p>Docker-compose is set to start an instance of Postgres and the entire application.</p>
+<ul>
+<li><code>npm run build</code>: builds app.</li>
+<li><code>npm run start</code>: start the server.</li>
+<li><code>npm run dev</code>: start the server in development mode.</li>
+</ul>
+<h2>Swagger</h2>
+<p><a href="http://localhost:4001/docs/">http://localhost:4001/docs/</a></p>
+<h2>Local Access - Endpoints Collection</h2>
+<p>To access the collection, import the &quot;api-requests.postman_collection.json&quot; file at the root of the project in your favorite consumer software</p>
+<h2>Project architecture</h2>
+<p>This project was built using Clean Architecture and SOLID principles.</p>
+<p>To separate concerns, the application was built with a Clean Architecture. It is divided into Domain, Application, Infra and Main layers.</p>
+<h3>Domain Layer</h3>
+<p>The Domain layer contains the Entitites and it is in charge of the business logic of the application.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">============= DOMAIN LAYER =====================================================================
+entities
+    L User.ts          // User structure
+
+enum
+  L ProfileEnum.ts</code></pre></div><h3>Application Layer</h3>
+<p>The Application Layer implements all the use cases and contains the interfaces to interact with the outside world.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">============= APPLICATION LAYER =================================================================
+config
+
+errors
+
+interfaces
+  L repositories
+    L CreateUserRepository.ts         
+    L DeleteUserRepository.ts
+    L GetUserByFiltersRepository.ts  
+    L GetUserByIdRepository.ts  
+    L GetUsersRepository.ts  
+    L UpdtateUserRepository.ts          
+  L use-cases
+    L UseCase.ts
+    L User
+        L CreateUserInterface.ts         
+        L DeleteUserInterface.ts
+        L GetUserByFiltersInterface.ts  
+        L GetUserByIdInterface.ts  
+        L GetUsersInterface.ts  
+        L UpdateUserInterface.ts   
+
+use-cases                 // use cases implementation
+  L User
+    L CreateUser.ts         
+    L DeleteUser.ts
+    L GetUserByFilters.ts  
+    L GetUserById.ts  
+    L GetUsers.ts  
+    L UpdtateUser.ts      </code></pre></div><h3>Infra Layer</h3>
+<p>The Infra Layer contains the controllers, database connections, repositories, that is, this layer has the concrete implementations of the application.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">============= INFRA LAYER ======================================================================
+database
+  L migrations      
+  L orm
+    L prisma
+        L schema.prisma 
+    L prisma.ts
+  L repositories
+    L UserRepository.ts
+
+http
+  L controllers     // request and response processing logic
+  L errors
+  L helpers
+  L interfaces
+  L middlewares
+  L validations
+  L validators</code></pre></div><h3>Main Layer</h3>
+<p>The Main Layer is the entry point of the application. It contains the framework (Express), the routes, the factory method to inject the necessary dependencies.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">============= MAIN LAYER ========================================================================
+adapters
+
+config
+
+doc
+  L swagger.yaml
+  L swagger-config.ts
+
+factories
+  L controllers
+  L use-cases
+
+middlewares
+
+routes
+  L healthcheck.ts     // healthcheck route
+  L user-route.ts   // users routes</code></pre></div><h2>What we use?</h2>
+<h4>Environment</h4>
+<ul>
+<li><p><a href="https://nodejs.org/en/">Node</a> - Node.js® is a JavaScript runtime built on Chrome&#39;s V8 JavaScript engine.</p>
+</li>
+<li><p><a href="https://www.typescriptlang.org/">TypeScript</a> - TypeScript is JavaScript with syntax for types.</p>
+</li>
+<li><p><a href="https://www.prisma.io">Prisma</a> - Next-generation Node.js and TypeScript ORM.</p>
+</li>
+<li><p><a href="https://postgresql.org/">PostgreSQL</a> - PostgreSQL: The World&#39;s Most Advanced Open Source Relational Database.</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

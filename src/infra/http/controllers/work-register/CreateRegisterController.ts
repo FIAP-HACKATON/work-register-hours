@@ -1,4 +1,4 @@
-import { CreateRegisterInterface } from '@application/interfaces/use-cases/time-register/CreateRegisterInterface';
+import { CreateRegisterInterface } from '@application/interfaces/use-cases/time-register/CreateRegister.interface';
 import { BaseController } from '../BaseController';
 import { HttpRequest } from '../../interfaces/HttpRequest';
 import { HttpResponse } from '../../interfaces/HttpResponse';

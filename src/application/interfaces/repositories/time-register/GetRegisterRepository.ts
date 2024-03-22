@@ -4,7 +4,6 @@ export interface GetRegisterRepository {
 
 export namespace GetRegisterRepository {
   export type Request = {
-    initial_date: Date;
-    final_date?: Date;
+    filter_date: string;
   };
 }

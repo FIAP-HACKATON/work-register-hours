@@ -17,15 +17,19 @@ export class TimeRegisterRepository
   }
 
   async getRegistration(data: GetRegisterRepository.Request): Promise<any> {
-    const initial = data.final_date ? data.initial_date : new Date();
-    const final = data.final_date ? data.final_date : initial;
-    return prisma.work_hours.findMany({
-      where: {
-        date: {
-          gte: initial,
-          lte: final,
+    try {
+      const initial = new Date(data.filter_date);
+      const final = new Date(data.filter_date);
+      final.setUTCHours(23, 59, 59, 999);
+      const result = await prisma.work_hours.findMany({
+        where: {
+          date: {
+            gte: initial.toISOString(),
+            lte: final.toISOString(),
+          },
         },
-      },
-    });
+      });
+      return result;
+    } catch (error) {}
   }
 }
