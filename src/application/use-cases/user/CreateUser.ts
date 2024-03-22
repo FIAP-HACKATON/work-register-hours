@@ -8,7 +8,9 @@ export class CreateUser implements CreateUserInterface {
     private readonly findUserByFilter: GetUserByFiltersRepository,
   ) {}
 
-  async execute(userData: CreateUserInterface.Request): Promise<CreateUserInterface.Response> {
+  async execute(
+    userData: CreateUserInterface.Request,
+  ): Promise<CreateUserInterface.Response> {
     await this.createUserRepository.createUser({
       ...userData,
     });

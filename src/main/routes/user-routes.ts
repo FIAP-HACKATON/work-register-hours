@@ -12,9 +12,11 @@ export default (router: Router): void => {
   router.post('/user/', expressRouteAdapter(makeCreateUserController()));
   router.get('/access', expressRouteAdapter(makeGetUserAccessController()));
   router.get('/users/', expressRouteAdapter(makeGetUsersController()));
-  router.get('/user/filters', expressRouteAdapter(makeGetUserByFiltersController()));
+  router.get(
+    '/user/filters',
+    expressRouteAdapter(makeGetUserByFiltersController()),
+  );
   router.get('/user/:id', expressRouteAdapter(makeGetUserByIdController()));
   router.patch('/user/:id', expressRouteAdapter(makeUpdateUserController()));
   router.delete('/user/:id', expressRouteAdapter(makeDeleteUserController()));
-
 };

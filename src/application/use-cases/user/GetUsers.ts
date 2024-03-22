@@ -5,7 +5,9 @@ import { paginationConfig } from '../../config/pagination';
 export class GetUsers implements GetUserInterface {
   constructor(private readonly getUsersRepository: GetUserRepository) {}
 
-  async execute(params: GetUserInterface.Request): Promise<GetUserInterface.Response> {
+  async execute(
+    params: GetUserInterface.Request,
+  ): Promise<GetUserInterface.Response> {
     const { page = 1 } = params;
     const { paginationLimit } = paginationConfig;
     return this.getUsersRepository.getUsers({

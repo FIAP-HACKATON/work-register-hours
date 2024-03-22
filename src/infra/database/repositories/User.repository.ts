@@ -8,27 +8,38 @@ import { prisma } from '../orm/prisma';
 import { GetUserAccessRepository } from '@application/interfaces/repositories/user/GetUserAccess';
 import bcrypt from 'bcrypt';
 
-export class UserRepository implements CreateUserRepository, GetUserRepository, GetUserByIdRepository, GetUserByFiltersRepository, UpdateUserRepository, DeleteUserRepository, GetUserAccessRepository {
-
-  
+export class UserRepository
+  implements
+    CreateUserRepository,
+    GetUserRepository,
+    GetUserByIdRepository,
+    GetUserByFiltersRepository,
+    UpdateUserRepository,
+    DeleteUserRepository,
+    GetUserAccessRepository
+{
   async getUserAccess(queryString: GetUserAccessRepository.Request) {
-    const {email} = queryString;
-    const user = await prisma.user.findUnique({
+    const { name, registration, password } = queryString;
+    const user = await prisma.user.findFirst({
       where: {
-        email: email 
+        OR: [{ name: name }, { registration: registration }],
+        AND: [{ password: password }],
       },
     });
-    return user    
+    return user;
   }
 
   async createUser(userData: any): Promise<void> {
     const hash = await bcrypt.hash(userData.password, 10);
-    userData.password = hash
+    userData.password = hash;
+    console.log(userData);
+
     try {
       await prisma.user.create({
         data: userData,
       });
     } catch (error) {
+      console.log(error);
       throw new Error((error as Error).message);
     }
   }
@@ -42,7 +53,7 @@ export class UserRepository implements CreateUserRepository, GetUserRepository, 
         },
         data: {
           name: preload.name,
-          email: preload.email
+          email: preload.email,
         },
       });
       return 'User updated successfully';
@@ -58,25 +69,29 @@ export class UserRepository implements CreateUserRepository, GetUserRepository, 
       },
     });
   }
-  async getUserByFilters(queryString: GetUserByFiltersRepository.Request): Promise<any> {
-    const { email, cpf } = queryString;
+  async getUserByFilters(
+    queryString: GetUserByFiltersRepository.Request,
+  ): Promise<any> {
+    const { email } = queryString;
     const data = await prisma.user.findUnique({
       where: {
-        email: email || undefined
+        email: email || undefined,
       },
     });
     return data;
   }
   async getUserById(UserId: number): Promise<any> {
-      const user = await prisma.user.findUnique({
-        where: {
-          id: +UserId,
-        },
-      });
-      return user;
+    const user = await prisma.user.findUnique({
+      where: {
+        id: +UserId,
+      },
+    });
+    return user;
   }
 
-  async getUsers(params: GetUserRepository.Request): Promise<GetUserRepository.Response> {
+  async getUsers(
+    params: GetUserRepository.Request,
+  ): Promise<GetUserRepository.Response> {
     const { page, paginationLimit } = params;
     const users = await prisma.user.findMany({
       orderBy: {

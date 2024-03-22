@@ -9,7 +9,9 @@ export class GetUsersController extends BaseController {
     super();
   }
 
-  async execute(httpRequest: GetUsersController.Request): Promise<GetUsersController.Response> {
+  async execute(
+    httpRequest: GetUsersController.Request,
+  ): Promise<GetUsersController.Response> {
     const { page } = httpRequest.params!;
     const response = await this.getUsers.execute({ page });
     return ok(response);

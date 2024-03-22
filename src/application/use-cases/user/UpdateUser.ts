@@ -9,7 +9,9 @@ export class UpdateUser implements UpdateUserInterface {
     private readonly updateUserRepository: UpdateUserRepository,
   ) {}
 
-  async execute(params: UpdateUserInterface.Request): Promise<UpdateUserInterface.Response> {
+  async execute(
+    params: UpdateUserInterface.Request,
+  ): Promise<UpdateUserInterface.Response> {
     const { userId, userData } = params;
     const user = await this.getUserByIdRepository.getUserById(userId);
     if (!user) {
