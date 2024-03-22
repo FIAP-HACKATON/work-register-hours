@@ -5,6 +5,6 @@ export namespace GetUserAccessRepository {
   export type Request = {
     name?: string;
     registration?: string;
-    password?: string;
+    password: string;
   };
 }
