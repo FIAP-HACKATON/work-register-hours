@@ -4,7 +4,6 @@ import { HttpRequest } from '../../infra/http/interfaces/HttpRequest';
 
 export const expressRouteAdapter =
   (controller: BaseController) => async (req: Request, res: Response) => {
-    try {
       const httpRequest: HttpRequest = {
         body: req.body,
         query: req.query,
@@ -19,7 +18,4 @@ export const expressRouteAdapter =
           error: httpResponse.body?.message,
         });
       }
-    } catch (err) {
-      //TODO
-    }
   };
