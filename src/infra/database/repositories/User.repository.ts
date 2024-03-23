@@ -19,10 +19,10 @@ export class UserRepository
     GetUserAccessRepository
 {
   async getUserAccess(queryString: GetUserAccessRepository.Request) {
-    const { name, registration, password } = queryString;
+    const { name, registration } = queryString;
     const user = await prisma.user.findFirst({
       where: {
-        OR: [{ name: name }, { registration: registration }]
+        OR: [{ name: name }, { registration: registration }],
       },
     });
     return user;

@@ -10,14 +10,12 @@ export class GetUserAccess implements GetUserAccessInterface {
   async execute(
     queryString: GetUserAccessInterface.Request,
   ): Promise<GetUserAccessInterface.Response> {
-    const { name, registration, password } = queryString;
+    const { name, registration } = queryString;
 
     const user = await this.getUserAccessRepository.getUserAccess({
       name,
       registration,
-      password,
     });
-
     if (!user) {
       return new UserNotFoundError();
     }
