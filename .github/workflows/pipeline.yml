@@ -42,8 +42,8 @@ jobs:
         run: npm ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  ci_docker:
-    name: CI - Docker Image to AWS ECR
+  ci_cd:
+    name: CI/CD - Build and Deploy
     if: ${{ success() && github.event_name != 'pull_request' }}
     needs: [ci]
     runs-on: ubuntu-latest
@@ -74,15 +74,9 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
     
-    # - name: Save task definition
-    #   run: echo "::set-output name=task-definition::task_definition.json"
-
-  # cd_main:
-  #   name: CD - Main
-  #   if: ${{ success() && github.event_name != 'pull_request' }}
-  #   needs: [ci_docker]
-  #   runs-on: 'ubuntu-latest'
-  #   steps:
+    - name: Download task definition
+      run: |
+        aws ecs describe-task-definition --task-definition ecs-fargate-user-td --query taskDefinition > task-definition.json
     - name: List files in directory
       run: ls -la
     - name: Fill in the new image ID in the Amazon ECS task definition
