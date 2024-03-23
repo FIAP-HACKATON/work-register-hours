@@ -25,6 +25,7 @@
     ],
     "placementConstraints": [],
     "compatibilities": [
+        "FARGATE",
         "EXTERNAL",
         "EC2"
     ],
