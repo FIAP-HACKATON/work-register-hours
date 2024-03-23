@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 export class EmailInUseError extends Error {
   constructor() {
     super('Email is already in use');

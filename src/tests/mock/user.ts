@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { UserEntity } from '../../domain/entities/User';
 
 export const userMocked: UserEntity = {

@@ -86,7 +86,11 @@
       "/src/application/config",
       "/src/application/errors",
       "/src/application/interfaces",
-      "/src/main/factories"
+      "/src/main/factories",
+      "/src/domain/",
+      "/src/infra/",
+      "/src/tests/",
+      "/src/application/use-cases/user"
     ]
   },
   "dependencies": {

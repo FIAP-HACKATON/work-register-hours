@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 export class UserCredentialInvalidError extends Error {
   constructor() {
     super('User credential invalid');

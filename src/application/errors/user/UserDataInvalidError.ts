@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 export class UserDataInvalidError extends Error {
   constructor() {
     super('Invalid data');

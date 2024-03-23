@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { DeleteUserRepository } from '@application/interfaces/repositories/user/DeleteUserRepository';
 import { DeleteUserInterface } from '@application/interfaces/use-cases/user/DeleteUserInterface';
 

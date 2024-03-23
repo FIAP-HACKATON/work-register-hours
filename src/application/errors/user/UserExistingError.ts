@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 export class UserExistError extends Error {
   constructor() {
     super('The User already exists');

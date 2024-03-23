@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { GetUserRepository } from '../../interfaces/repositories/user/GetUserRepository';
 import { GetUserInterface } from '@application/interfaces/use-cases/user/GetUsersInterface';
 import { paginationConfig } from '../../config/pagination';

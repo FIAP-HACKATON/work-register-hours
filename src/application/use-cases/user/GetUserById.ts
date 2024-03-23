@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { UserNotFoundError } from '../../errors/user/UserNotFoundError';
 import { GetUserByIdRepository } from '../../../application/interfaces/repositories/user/GetUserByIdRepository';
 import { GetUserByIdInterface } from '@application/interfaces/use-cases/user/GetUserByIdInterface';

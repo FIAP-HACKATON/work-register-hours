@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 export class registerPoint {
   constructor(
     public date: Date,

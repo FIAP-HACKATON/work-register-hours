@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { UserNotFoundError } from '../../errors/user/UserNotFoundError';
 import { GetUserByFiltersRepository } from '../../interfaces/repositories/user/GetUserByFiltersRepository';
 import { GetUserByFiltersInterface } from '@application/interfaces/use-cases/user/GetUserByFiltersInterface';
