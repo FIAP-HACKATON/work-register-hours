@@ -1,4 +1,4 @@
-# Running the application directly on your local machine
+# Executando o aplicativo diretamente em sua máquina local
 Você pode usar estes comandos para iniciar o aplicativo:
 
 docker build -t order . --no-cache
