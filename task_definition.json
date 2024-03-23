@@ -14,6 +14,7 @@
             "systemControls": []
         }
     ],
+    "networkMode": "awsvpc",
     "family": "ecs-fargate-user-td",
     "revision": 12,
     "volumes": [],
