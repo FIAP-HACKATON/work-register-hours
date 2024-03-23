@@ -25,11 +25,13 @@
     ],
     "placementConstraints": [],
     "compatibilities": [
-        "FARGATE",
         "EXTERNAL",
         "EC2"
     ],
     "registeredAt": "2024-03-22T21:26:27.681Z",
     "registeredBy": "arn:aws:iam::${{ secrets.ACCOUNT_ID }}:user/geowana@motorola.com",
-    "tags": []
+    "tags": [],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ]
 }
