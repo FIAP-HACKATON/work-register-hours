@@ -1,3 +1,17 @@
+# Running the application directly on your local machine
+Você pode usar estes comandos para iniciar o aplicativo:
+
+docker build -t order . --no-cache
+docker-compose up -d --force-recreate
+Docker-compose is set to start an instance of Postgres and the entire application.
+
+npm run build: builds app.
+npm run start: start the server.
+npm run start:dev: start the server in development mode.
+
+Local Access - Endpoints Collection
+Work Register - Collection.postman_collection.json
+
 # 📚 Documentação HACKATON - Work Register Hours
 
 ## Vídeo
@@ -174,4 +188,3 @@ Fazer o processamento do relatório na função Lambda oferece uma solução mai
 ## Contexto do Container - Fase 2 Evolutiva
 
 ![context-system](./img/container-context-2.webp)
-
