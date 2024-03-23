@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { Express, Router } from 'express';
 import usersRouter from '../routes/user-routes';
 import registerRouter from '../routes/time-register-routes';

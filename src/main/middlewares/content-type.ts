@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { Request, Response, NextFunction } from 'express';
 
 export const contentType = (

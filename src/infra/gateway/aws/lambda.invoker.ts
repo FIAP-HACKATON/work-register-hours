@@ -3,6 +3,12 @@ import { LambdaInvokerParams } from '@application/interfaces/gateway/ports/lambd
 import { Lambda } from 'aws-sdk';
 
 export class AwsLambdaInvoker implements LambdaInvoker {
+  static mockImplementation(arg0: () => { invoke: jest.Mock<any, any, any>; }) {
+    throw new Error('Method not implemented.');
+  }
+  static mockClear() {
+    throw new Error('Method not implemented.');
+  }
   private readonly lambda: Lambda;
 
   constructor() {

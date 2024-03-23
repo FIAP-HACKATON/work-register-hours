@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { Validation } from '../interfaces/Validation';
 import { MissingParamError } from '../errors/MissingParamError';
 

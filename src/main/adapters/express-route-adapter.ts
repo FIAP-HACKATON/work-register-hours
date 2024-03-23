@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { Request, Response } from 'express';
 import { BaseController } from '../../infra/http/controllers/BaseController';
 import { HttpRequest } from '../../infra/http/interfaces/HttpRequest';

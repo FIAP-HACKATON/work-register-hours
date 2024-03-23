@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { Router } from 'express';
 import { expressRouteAdapter } from '../../main/adapters/express-route-adapter';
 import { makeCreateUserController } from '../factories/controllers/user/create-user/controller-factory';

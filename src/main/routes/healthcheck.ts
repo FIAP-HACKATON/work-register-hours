@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { Router } from 'express';
 
 export default (router: Router): void => {

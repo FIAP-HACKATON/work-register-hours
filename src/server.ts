@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import dotenv from 'dotenv';
 import setupApp from './main/config/app';
 

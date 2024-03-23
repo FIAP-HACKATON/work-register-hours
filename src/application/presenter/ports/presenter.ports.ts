@@ -1,7 +1,7 @@
 export class registerPoint {
   constructor(
     public date: Date,
-    public totalHoursWorked: number,
+    public totalHoursWorked?: number,
   ) {}
 }
 

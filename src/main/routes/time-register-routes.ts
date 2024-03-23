@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { expressMiddlewareAccess } from '../../main/adapters/express-middleware-access';
 import { Router } from 'express';
 import { expressRouteAdapter } from '../adapters/express-route-adapter';

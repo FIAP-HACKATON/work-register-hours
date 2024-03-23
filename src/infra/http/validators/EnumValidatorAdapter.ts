@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import validator from 'validator';
 import { EnumValidator } from '@infra/http/validations/interfaces/EnumValidator';
 

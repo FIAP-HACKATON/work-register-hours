@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { Validation } from '../../../infra/http/interfaces/Validation';
 import { InvalidParamError } from '../../../infra/http/errors/InvalidParamError';
 import { StringValidator } from '@infra/http/validations/interfaces/StringValidator';

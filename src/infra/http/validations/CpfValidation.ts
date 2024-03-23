@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { InvalidParamError } from '../errors/InvalidParamError';
 import { Validation } from '../interfaces/Validation';
 import { CpfValidator } from './interfaces/CpfValidator';

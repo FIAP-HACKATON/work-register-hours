@@ -1,6 +1,6 @@
 import { UserEntity } from '../../domain/entities/User';
 
-export const user: UserEntity = {
+export const userMocked: UserEntity = {
   id: 1,
   name: 'Joao Maria',
   email: 'joao.maria@gmail.com',

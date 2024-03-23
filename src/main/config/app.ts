@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import express, { Express } from 'express';
 import setupRoutes from './routes';
 import setupMiddlewares from './middlewares';

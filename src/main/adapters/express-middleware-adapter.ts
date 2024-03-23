@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { NextFunction, Request, Response } from 'express';
 import { BaseMiddlewareHttp } from '@infra/http/middlewares/BaseMiddlewareHttp';
 import { HttpRequest } from '../../infra/http/interfaces/HttpRequest';

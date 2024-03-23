@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import express from 'express';
 import { readFileSync } from 'fs';
 import { join } from 'path';

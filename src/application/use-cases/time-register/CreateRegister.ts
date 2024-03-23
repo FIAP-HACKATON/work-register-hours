@@ -14,7 +14,7 @@ export class CreateRegister implements CreateRegisterInterface {
   ): Promise<CreateRegisterInterface.Response> {
     try {
       const user = await this.findUserById.getUserById(UserData.user_id);
-
+      console.log(user)
       if (!user) {
         return Promise.resolve('User not found');
       }

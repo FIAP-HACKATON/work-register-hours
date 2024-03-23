@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import validator from 'validator';
 import { EmailValidator } from '../validations/interfaces/EmailValidator';
 

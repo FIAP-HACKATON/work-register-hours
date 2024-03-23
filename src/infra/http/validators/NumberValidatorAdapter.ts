@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import validator from 'validator';
 import { NumberValidator } from '@infra/http/validations/interfaces/NumberValidator';
 

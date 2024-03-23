@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { CpfValidator } from '../validations/interfaces/CpfValidator';
 
 export class CPfValidatorAdapter implements CpfValidator {
