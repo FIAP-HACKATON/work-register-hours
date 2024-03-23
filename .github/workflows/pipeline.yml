@@ -30,6 +30,7 @@ jobs:
         run: |
           DATABASE_URL=${{ secrets.DATABASE_URL }}
           JWT_SECRET=${{ secrets.JWT_SECRET }}
+          EXPIRE_JWT=${{ secrets.EXPIRE_JWT }}
       - name: Checkout
         uses: actions/checkout@v3.5.0
       - name: Setup Node

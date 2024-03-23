@@ -11,7 +11,7 @@ import { expressMiddlewareAccess } from '../../main/adapters/express-middleware-
 
 export default (router: Router): void => {
   router.post('/user/', expressRouteAdapter(makeCreateUserController()));
-  router.get('/users/access', expressRouteAdapter(makeGetUserAccessController()));
+  router.post('/user/access', expressRouteAdapter(makeGetUserAccessController()));
   router.get('/users/', expressMiddlewareAccess(), expressRouteAdapter(makeGetUsersController()));
   router.get(
     '/user/filters', expressMiddlewareAccess(),
