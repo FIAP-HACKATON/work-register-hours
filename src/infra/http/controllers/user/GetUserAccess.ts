@@ -22,16 +22,15 @@ export class GetUserByAccessController extends BaseController {
   async execute(
     httpRequest: GetUserAccessController.Request,
   ): Promise<GetUserAccessController.Response> {
+    try {
     const { registration, name, password } = httpRequest.body!;
     const user = await this.getUserAccess.execute({
       registration,
       name,
-      password,
     });
     if (user instanceof UserNotFoundError) {
       return notFound(user);
     }
-
     if (await bcrypt.compare(password, user.password)) {
       const payload = { id: user.id };
       const token = jwt.sign(payload, this.secretKey, {
@@ -39,9 +38,11 @@ export class GetUserByAccessController extends BaseController {
       });
       return { statusCode: 200, body: { token } };
     }
+    return badRequest(new UserCredentialInvalidError())
 
-    return badRequest(new UserCredentialInvalidError());
-  }
+} catch (error) {
+    console.log(error)
+}}
 }
 
 export namespace GetUserAccessController {

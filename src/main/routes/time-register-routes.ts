@@ -7,7 +7,7 @@ import { makeRequestHistoryController } from '../factories/controllers/work-regi
 
 export default (router: Router): void => {
   router.post(
-    '/time-register/', 
+    '/time-register/',
     expressMiddlewareAccess(),
     expressRouteAdapter(makeCreateRegisterController()),
   );

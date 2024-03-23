@@ -17,7 +17,6 @@ export namespace GetUserAccessInterface {
   export type Request = {
     name?: string;
     registration?: string;
-    password: string;
   };
   export type Response =
     | UserEntity
